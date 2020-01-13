@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kitemviews
-Version  : 5.65.0
-Release  : 25
-URL      : https://download.kde.org/stable/frameworks/5.65/kitemviews-5.65.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.65/kitemviews-5.65.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.65/kitemviews-5.65.0.tar.xz.sig
+Version  : 5.66.0
+Release  : 26
+URL      : https://download.kde.org/stable/frameworks/5.66/kitemviews-5.66.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.66/kitemviews-5.66.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.66/kitemviews-5.66.0.tar.xz.sig
 Summary  : Widget addons for Qt Model/View
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -65,15 +65,15 @@ license components for the kitemviews package.
 
 
 %prep
-%setup -q -n kitemviews-5.65.0
-cd %{_builddir}/kitemviews-5.65.0
+%setup -q -n kitemviews-5.66.0
+cd %{_builddir}/kitemviews-5.66.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576516801
+export SOURCE_DATE_EPOCH=1578935486
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -90,11 +90,11 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1576516801
+export SOURCE_DATE_EPOCH=1578935486
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kitemviews
-cp %{_builddir}/kitemviews-5.65.0/COPYING %{buildroot}/usr/share/package-licenses/kitemviews/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kitemviews-5.65.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kitemviews/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kitemviews-5.66.0/COPYING %{buildroot}/usr/share/package-licenses/kitemviews/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/kitemviews-5.66.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kitemviews/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -236,7 +236,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5ItemViews.so.5
-/usr/lib64/libKF5ItemViews.so.5.65.0
+/usr/lib64/libKF5ItemViews.so.5.66.0
 /usr/lib64/qt5/plugins/designer/kitemviews5widgets.so
 
 %files license
