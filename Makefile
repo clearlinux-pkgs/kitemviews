@@ -1,5 +1,5 @@
 PKG_NAME := kitemviews
-URL = https://download.kde.org/stable/frameworks/5.81/kitemviews-5.81.0.tar.xz
+URL = https://download.kde.org/stable/frameworks/5.82/kitemviews-5.82.0.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
