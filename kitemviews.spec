@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kitemviews
-Version  : 5.90.0
-Release  : 49
-URL      : https://download.kde.org/stable/frameworks/5.90/kitemviews-5.90.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.90/kitemviews-5.90.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.90/kitemviews-5.90.0.tar.xz.sig
+Version  : 5.91.0
+Release  : 50
+URL      : https://download.kde.org/stable/frameworks/5.91/kitemviews-5.91.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.91/kitemviews-5.91.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.91/kitemviews-5.91.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 LGPL-2.0
@@ -64,15 +64,15 @@ license components for the kitemviews package.
 
 
 %prep
-%setup -q -n kitemviews-5.90.0
-cd %{_builddir}/kitemviews-5.90.0
+%setup -q -n kitemviews-5.91.0
+cd %{_builddir}/kitemviews-5.91.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1641953754
+export SOURCE_DATE_EPOCH=1644852069
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -88,13 +88,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1641953754
+export SOURCE_DATE_EPOCH=1644852069
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kitemviews
-cp %{_builddir}/kitemviews-5.90.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kitemviews/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
-cp %{_builddir}/kitemviews-5.90.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kitemviews/e712eadfab0d2357c0f50f599ef35ee0d87534cb
-cp %{_builddir}/kitemviews-5.90.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kitemviews/20079e8f79713dce80ab09774505773c926afa2a
-cp %{_builddir}/kitemviews-5.90.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kitemviews/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kitemviews-5.91.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kitemviews/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0
+cp %{_builddir}/kitemviews-5.91.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kitemviews/e712eadfab0d2357c0f50f599ef35ee0d87534cb
+cp %{_builddir}/kitemviews-5.91.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kitemviews/20079e8f79713dce80ab09774505773c926afa2a
+cp %{_builddir}/kitemviews-5.91.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kitemviews/20079e8f79713dce80ab09774505773c926afa2a
 pushd clr-build
 %make_install
 popd
@@ -223,11 +223,11 @@ popd
 /usr/include/KF5/KItemViews/kextendableitemdelegate.h
 /usr/include/KF5/KItemViews/kfilterproxysearchline.h
 /usr/include/KF5/KItemViews/kitemviews_export.h
+/usr/include/KF5/KItemViews/kitemviews_version.h
 /usr/include/KF5/KItemViews/klistwidgetsearchline.h
 /usr/include/KF5/KItemViews/ktreewidgetsearchline.h
 /usr/include/KF5/KItemViews/ktreewidgetsearchlinewidget.h
 /usr/include/KF5/KItemViews/kwidgetitemdelegate.h
-/usr/include/KF5/kitemviews_version.h
 /usr/lib64/cmake/KF5ItemViews/KF5ItemViewsConfig.cmake
 /usr/lib64/cmake/KF5ItemViews/KF5ItemViewsConfigVersion.cmake
 /usr/lib64/cmake/KF5ItemViews/KF5ItemViewsTargets-relwithdebinfo.cmake
@@ -238,7 +238,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5ItemViews.so.5
-/usr/lib64/libKF5ItemViews.so.5.90.0
+/usr/lib64/libKF5ItemViews.so.5.91.0
 /usr/lib64/qt5/plugins/designer/kitemviews5widgets.so
 
 %files license
