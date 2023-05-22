@@ -6,11 +6,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kitemviews
-Version  : 5.105.0
-Release  : 65
-URL      : https://download.kde.org/stable/frameworks/5.105/kitemviews-5.105.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.105/kitemviews-5.105.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.105/kitemviews-5.105.0.tar.xz.sig
+Version  : 5.106.0
+Release  : 66
+URL      : https://download.kde.org/stable/frameworks/5.106/kitemviews-5.106.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.106/kitemviews-5.106.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.106/kitemviews-5.106.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC0-1.0 GPL-2.0 LGPL-2.0
@@ -68,40 +68,61 @@ license components for the kitemviews package.
 
 
 %prep
-%setup -q -n kitemviews-5.105.0
-cd %{_builddir}/kitemviews-5.105.0
+%setup -q -n kitemviews-5.106.0
+cd %{_builddir}/kitemviews-5.106.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681138167
+export SOURCE_DATE_EPOCH=1684792309
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1681138167
+export SOURCE_DATE_EPOCH=1684792309
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kitemviews
 cp %{_builddir}/kitemviews-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kitemviews/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
 cp %{_builddir}/kitemviews-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kitemviews/e712eadfab0d2357c0f50f599ef35ee0d87534cb || :
 cp %{_builddir}/kitemviews-%{version}/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kitemviews/20079e8f79713dce80ab09774505773c926afa2a || :
 cp %{_builddir}/kitemviews-%{version}/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/kitemviews/20079e8f79713dce80ab09774505773c926afa2a || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -212,6 +233,7 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKF5ItemViews.so
 /usr/include/KF5/KItemViews/KCategorizedSortFilterProxyModel
 /usr/include/KF5/KItemViews/KCategorizedView
 /usr/include/KF5/KItemViews/KCategoryDrawer
@@ -241,8 +263,11 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libKF5ItemViews.so.5
+/V3/usr/lib64/libKF5ItemViews.so.5.106.0
+/V3/usr/lib64/qt5/plugins/designer/kitemviews5widgets.so
 /usr/lib64/libKF5ItemViews.so.5
-/usr/lib64/libKF5ItemViews.so.5.105.0
+/usr/lib64/libKF5ItemViews.so.5.106.0
 /usr/lib64/qt5/plugins/designer/kitemviews5widgets.so
 
 %files license
